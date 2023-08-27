@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/9c84445db0.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="index.css">
+    <title>TOOLTIP CON JAVASCRIPT</title>
+</head>
+<body>
+    <main class="contenedor">
+        <!---Con esto queremos indicar que aca queremos una imagen-->
+        <figure>
+            <img src="./img/mapa.png" alt="" class="mapa">
+            <figcaption>
+                <i class="icono fa-solid fa-location-pin" id="icono"></i>
+                <div class="tooltip" id="tooltip">
+                    <div class="thumb">
+                        <img src="./img/torre-eiffel.png" alt="">
+                    </div>
+                    <div class="info">
+                        <h3 class="titulo">Torre eiffel</h3>
+                        <p class="direccion">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique qui officiis facilis?</p>
+                        <p class="resumen">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio at quam libero. Veritatis sit 
+                        </p>
+                        <div class="contenedorBtn">
+                            <button>Comprar boletos</button>
+                        </div>
+                    </div>
+                </div>
+            </figcaption><!--Contenido en texto relacionado con la imagen-->
+        </figure>
+    </main>
+    <script src="main.js"></script>
+</body>
+</html>

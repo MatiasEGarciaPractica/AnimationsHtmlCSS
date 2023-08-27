@@ -1,0 +1,145 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background: #efefef;
+    font-size: 16px;
+}
+
+.contenedor{
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;/*centralizamos horizontalmente*/
+    padding-top: 300px;
+}
+
+figure{
+    width: 100%;
+    position: relative;/*importante para luego ponerle un posicionamiento absoluto al figcaption*/
+}
+
+figure .mapa{
+    width: 100%;
+    vertical-align: top;/*para quitar un pequeño margen que agrega el navegador a las imagenes*/
+    box-shadow: 5px 5px 60px rgba(0,0,0, .20);
+    border-radius: 10px;
+}
+
+figure .icono{
+    position: absolute;
+    top: 32%;/*uso porcentajes para que sea responsive*/
+    left: 55.3%;
+    font-size: 40px;
+}
+
+.tooltip{
+    display: flex;
+    position: absolute;
+    top:0;/*el posicionamiento lo vamos a hacer con javascript*/
+    left: 0;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 5px 5px 50px rgba(0,0,0, .20);
+    width: 33.25em;/*igual a 500px, lo averiguas con la calculadora, 500 dividido 16 , 16 del font-size del body*/
+    z-index: 1000;
+    opacity: 0;
+    transition: .3s ease all;
+    transform: translateY(10px); /*esto lo combino con el transform the .tooltip.activo para generar un efecto de que el tooltip aparece desde abajo*/
+}
+
+/*para el triangulito del tooltip*/
+.tooltip::after{
+    content:"";
+    display: inline-block;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid #fff;
+    position: absolute;
+    bottom:-15px;
+    left: calc(50% - 15px);
+}
+
+.tooltip.activo{
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+.tooltip .thumb{
+    width: 40%;
+}
+.tooltip .thumb img{
+    width: 100%; /*esto es para ajustar la imagen a solo el 40% que ocupa el thumb, sin esto la imagen hace lo que quiere*/
+    border-radius: 10px 0 0 10px;
+    vertical-align: top;
+}
+.tooltip .info {
+    width: 60%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.tooltip .info .titulo{
+    color: #3c48e5;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.tooltip .info .direccion{
+    color: #707070;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+.tooltip .info .resumen{
+    margin-bottom: 10px;
+}
+
+.tooltip .info .contenedorBtn{
+    display: flex;
+    justify-content: center;
+}
+
+.tooltip .info button{
+    border: none;
+    background: #75ac35;
+    font-weight: bold;
+    padding: 10px 20px;
+    width: 80%;
+    border-radius: 100px;
+    cursor: pointer;
+}
+.tooltip .info button:hover{
+    background: rgba(117,172,53, .9);
+}
+
+
+/*------------------MEDIA QUERIES*/
+@media screen and (max-width:768px){
+    /*como usamos em en los textos/ el cual depende del body fontsize*/
+    figcaption .tooltip{
+        font-size: 12px;
+    }
+}
+
+
+@media screen and (max-width:576px){
+    figure .mapa{
+        margin-bottom: 40px;
+    }
+
+    figure .icono{
+        display: none;
+    }
+
+    .tooltip{
+        position: static;
+        opacity: 1; /*para que se vea por default*/
+        transform: translate(0);
+    }
+
+    .tooltip::after{
+        content: "";
+        display: none;
+    }
+}
