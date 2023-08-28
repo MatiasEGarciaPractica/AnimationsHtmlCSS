@@ -1,0 +1,294 @@
+/**Google font import - Poppins 15:32*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    /*-----------Colors ---------*/
+    --body-color:#E4E9F7;
+    --sidebar-color:#FFF;
+    --primary-color:#695CFE;
+    --primary-color-light:#F6F5FF;
+    --toogle-color:#DDD;
+    --text-color:#707070;
+
+    /*-----------Tranasition---------*/
+    --tran-02: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.4s ease;
+    --tran-05: all 0.5s ease;
+}
+body{
+    height: 100vh;
+    background: var(--body-color);
+    transition: var(--tran-04);/*para el cambio del modo oscuro y modo light*/
+}
+
+body.dark{
+    /*-----------Colors ---------*/
+    --body-color:#18191A;
+    --sidebar-color:#242526;
+    --primary-color:#3A3B3C;
+    --primary-color-light:#3A3B3C;
+    --toogle-color:#FFF;
+    --text-color:#CCC;
+}
+
+/*----------------Sidebar */
+
+.sidebar{
+    /*con esto ponemos el sidebar para siempre a la izquierda, no importa cuanto scrollee para abajo*/
+    position: fixed; 
+    top: 0;
+    left: 0;
+    /*---*/
+    height: 100%;
+    width: 250px;
+    padding: 10px 14px;/*derecha y izquierda*/
+    background: var(--sidebar-color);
+    transition: var(--tran-05); /*para el sidebar close */
+    z-index: 100;
+}
+
+.sidebar.close{
+    width: 88px;/*navbar with in close mode*/
+}
+
+/* -------------- Reusable CSS*/
+.sidebar .text{
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-color);
+    transition: var(--tran-05);/*para el sidebar close */
+    white-space: nowrap;
+    opacity: 1;
+}
+
+.sidebar.close .text{
+    opacity: 0;/*para ocultar el texto cuando el navbar este cerrado*/
+}
+
+.sidebar .image{
+    min-width: 60px;
+    /*sin flex hay un espacio que sobra debajo del logo*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar li{/*primer li que esta fuera del ul(menuLinks)*/
+    height: 50px;
+    margin-top: 10px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar li .icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    font-size: 20px;
+}
+
+.sidebar li .icon,
+.sidebar li .text{
+    color:var(--text-color);
+    transition: var(--tran-02); /*va a afectar el cambiado de color que realizamos al cambio de color por hover*/
+}
+
+.sidebar header{
+    position: relative;
+}
+
+.sidebar .imageText img{
+    width: 40px;
+    border-radius: 6px;
+}
+
+.sidebar header .imageText{
+    display: flex;
+    align-items: center;
+}
+
+.headerText .name{
+    font-weight: 600;
+}
+
+.sidebar header .toggle{
+    position: absolute;/*para esto necesitamos el position relative del .sidebar header*/
+    top: 50%;
+    right: -25px; /*asi va afuera del .sidebar header*/
+    transform: translateY(-50%) rotate(180deg); /*estp es para rotar el icono de abrir y cerrar el nabvar*/
+    height: 25px;
+    width: 25px;
+    background: var(--primary-color);
+    /*hubicamos el icono dentro del cuadrado*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*---------------*/
+    border-radius: 50%;
+    color: var(--sidebar-color);
+    font-size: 22px;
+    transition: var(--tran-03);
+}
+
+.sidebar.close header .toggle{
+    transform: translateY(-50%);
+}
+body.dark .sidebar header .toggle{
+    color: var(--text-color);
+}
+
+.sidebar .menu{
+    margin-top: 35px;
+}
+
+.sidebar .searchBox{
+    background: var(--primary-color-light);
+    border-radius: 6px;
+    transition: var(--tran-05);
+}
+
+.searchBox input{
+    height: 100%;
+    width: 100%;
+    outline: none;/*quita la linea alrededor que aparece cuando el elemento es focuseado(click en el elemento) */
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    background: var(--primary-color-light);
+    transition: var(--tran-05);
+}
+
+.sidebar li a{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: var(--tran-04);/*como va a ser la trancicion del a:hover*/
+}
+
+.sidebar li a:hover{
+    background: var(--primary-color);
+}
+
+.sidebar li a:hover .icon,
+.sidebar li a:hover .text{
+    color: var(--sidebar-color);
+}
+
+body.dark .sidebar li a:hover .icon,
+body.dark .sidebar li a:hover .text{
+    color: var(--text-color-color);
+}
+
+.sidebar .menuBar{
+    height: calc(100% - 50px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menuBar .mode{
+    position: relative;
+    border-radius: 6px;
+    background: var(--primary-color-light);
+}
+
+.menuBar .mode .moonSun{
+    height: 50px;
+    width: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.menuBar .mode i{
+    position: absolute;
+    transition: var(--tran-03);
+}
+
+.menuBar .mode i.sun{ /*para ocultar el sol cunado la pagina este en modo light*/
+    opacity: 0;
+}
+
+body.dark .menuBar .mode i.sun{/*para mostrar el sol cuando la pagina este ne modo oscuro*/
+    opacity: 1;
+}
+
+body.dark .menuBar .mode i.moon{/*para ocultar la luna cuando la pagina este ne modo oscuro*/
+    opacity: 0;
+}
+
+.menuBar .mode .toggleSwitch{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-width: 60px;
+    cursor: pointer;
+    border-radius: 6px;
+    background: var(--primary-color-light);
+    transition: var(--tran-05);
+}
+
+.toggleSwitch .switch{
+    position: relative;
+    height: 22px;
+    width: 44px;
+    border-radius: 25px;
+    background: var(--toogle-color);
+}
+
+/*Para el efecto del switch para cambiar el color mode*/
+.switch::before{
+    content: '';
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    background: var(--sidebar-color);
+    transition: var(--tran-03);
+}
+
+/*para mover el switch cuando el usuario cambie al mode dark*/
+body.dark .switch::before{
+    left: 24px;
+}
+
+
+/*Establecemos el ancho del resto de la pagina*/
+.home{
+    position: relative;
+    left: 250px;
+    height: 100vh;
+    width: calc(100% - 250px);/*todo el ancho menos el ancho del navbar*/
+    background: var(--body-color);
+    transition: var(--tran-05);
+}
+
+.home .text{
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--text-color);
+    padding: 8px 40px; /*derecha y izquierda*/
+}
+
+.sidebar.close ~ .home{
+    left: 88px;
+    width: calc(100% - 88px);/*todo el ancho menos el ancho del navbar minimizado*/
+}
