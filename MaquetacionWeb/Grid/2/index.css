@@ -1,0 +1,76 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.titleContainer{
+    text-align: center;
+    font-size: 50px;
+}
+
+.container1{
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(15rem,1fr));
+    /*con el auto-fill le decimos que vamos a llenar la columna con todos los elementos que podamos,
+    teniendo esos elementos como tamaño minimo unos 15rem y max 1fr.
+    */
+}
+
+.container2{
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(15rem,1fr));
+    /*
+    en este container el problema que tenemos es que no hay suficientes elementos, y queda en la misma row
+    espacio de mas. esto lo podemos solucionar con auto-fit(mirar container3)
+    */
+}
+
+
+.container3{
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(15rem,1fr));
+    /*
+    La diferencia entre auto-fit y auto-fill es que si en un row no hay suficientes elementos para ocupar el espacio 
+    los elementos se van a estirar para ocupar todo el ancho disponible
+    */
+}
+
+.container4{
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%,15rem,),1fr));
+    /*
+    con el min podemos usarlo para evitar el overflow que ocurre cuando la ventana es muy chica, el tamaño
+    de los elementos se va a ajustar al 100% del ancho disponible en la ventana
+    */
+}
+
+.container5{
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(15rem,1fr));
+    /*
+    En este container tenemos una carta que es mas ancha que las normales asi que dejaria un lugar vacio,
+    pero si el contenido no necesita mostrarse en un orden en especifico entonces podemos decirle a grid 
+    llene toods los espacios que pueda con grid-auto-flow(container6)
+    */
+}
+
+.container6{
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(15rem,1fr));
+    grid-auto-flow: dense;
+}
+
+.regularCard{
+    border: 1px solid black;
+}
+.bigCard{
+    grid-column: span 3;
+    border: 1px solid black;
+}
+
